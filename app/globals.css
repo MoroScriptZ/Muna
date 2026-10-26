@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  @apply bg-brand-cream text-brand-black font-body;
+  @apply bg-brand-ivory text-brand-black font-body antialiased;
 }
 
 /* Foco visible para accesibilidad de teclado */
@@ -38,9 +38,22 @@ textarea:focus-visible {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-wine px-6 py-3 font-semibold text-white transition hover:bg-brand-wine-dark;
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-wine px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-brand-wine-dark;
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center rounded-full border border-brand-wine px-6 py-3 font-semibold text-brand-wine transition hover:bg-brand-wine hover:text-white;
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand-wine px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-brand-wine transition hover:bg-brand-wine hover:text-white;
+}
+
+/* Etiqueta pequena sobre los titulos de seccion */
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.22em] text-brand-wine;
+}
+
+.section-title {
+  @apply mt-2 font-display text-3xl leading-tight text-brand-black md:text-4xl;
+}
+
+.field {
+  @apply w-full rounded-md border border-brand-line bg-white px-4 py-3 text-sm outline-none transition placeholder:text-brand-black/40 focus:border-brand-wine;
 }

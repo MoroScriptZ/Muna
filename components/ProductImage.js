@@ -1,7 +1,7 @@
 // Foto del producto. El Excel no trae imagenes: mientras `image` este vacio se muestra un espacio
 // reservado (sin URLs inventadas). Cuando tengas la foto, ponla en public/images/products/ y escribe
 // su nombre de archivo en el campo `image` del producto.
-export const TEXTO_SIN_FOTO = "Foto próximamente";
+export const TEXTO_SIN_FOTO = "Imagen próximamente";
 
 export default function ProductImage({ product }) {
   if (product.image) {
@@ -16,8 +16,9 @@ export default function ProductImage({ product }) {
     );
   }
   return (
-    <div className="flex h-full w-full items-center justify-center px-4 text-center text-sm text-brand-wine-dark/60">
-      {TEXTO_SIN_FOTO}
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center">
+      <span className="font-display text-3xl tracking-[0.2em] text-brand-wine/35">MUNA</span>
+      <span className="text-[11px] uppercase tracking-[0.18em] text-brand-black/40">{TEXTO_SIN_FOTO}</span>
     </div>
   );
 }

@@ -17,7 +17,9 @@ module.exports = {
           "pink-light": "#E8CECE",
           gold: "#B58A5A",
           brown: "#82594C",
-          black: "#2B2526"
+          black: "#2B2526",
+          ivory: "#FBF8F4",
+          line: "#E7DED6"
         }
       },
       fontFamily: {

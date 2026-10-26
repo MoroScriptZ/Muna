@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { IconChat, IconMail } from "@/components/Icons";
 
 export default function ContactoPage() {
   const [sent, setSent] = useState(false);
@@ -12,31 +13,54 @@ export default function ContactoPage() {
   }
 
   return (
-    <div className="container-page py-12">
-      <h1 className="font-display text-3xl text-brand-black">Contacto</h1>
-      <p className="mt-2 text-brand-black/60">
-        Escríbenos si tienes dudas sobre un pedido o nuestros productos.
-      </p>
-
-      <div className="mt-8 max-w-lg">
-        {sent ? (
-          <div className="rounded-2xl border border-brand-wine/30 bg-brand-pink-light p-6">
-            ¡Gracias! Te responderemos pronto.
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input required type="text" placeholder="Nombre" className="w-full rounded-xl border border-brand-black/15 px-4 py-3" />
-            <input required type="email" placeholder="Correo" className="w-full rounded-xl border border-brand-black/15 px-4 py-3" />
-            <textarea required placeholder="Mensaje" rows={4} className="w-full rounded-xl border border-brand-black/15 px-4 py-3" />
-            <button type="submit" className="btn-primary w-full">Enviar mensaje</button>
-          </form>
-        )}
-
-        <div className="mt-8 space-y-1 text-sm text-brand-black/70">
-          <p>📧 contacto@muna.co</p>
-          <p>💬 WhatsApp: escríbenos por chat</p>
+    <>
+      <section className="border-b border-brand-line bg-brand-cream">
+        <div className="container-page py-14">
+          <p className="eyebrow">Escríbenos</p>
+          <h1 className="section-title">Contacto</h1>
+          <p className="mt-3 max-w-xl text-brand-black/65">
+            Si tienes dudas sobre un pedido o nuestros productos, estamos para ayudarte.
+          </p>
         </div>
+      </section>
+
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr]">
+        <div>
+          {sent ? (
+            <div className="rounded-lg border border-brand-wine/30 bg-brand-pink-light p-6">
+              Gracias. Te responderemos pronto.
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input required type="text" placeholder="Nombre" aria-label="Nombre" className="field" />
+              <input required type="email" placeholder="Correo" aria-label="Correo" className="field" />
+              <textarea required placeholder="Mensaje" aria-label="Mensaje" rows={5} className="field" />
+              <button type="submit" className="btn-primary w-full sm:w-auto">Enviar mensaje</button>
+            </form>
+          )}
+        </div>
+
+        <aside className="space-y-6 rounded-lg border border-brand-line bg-white p-6 text-sm">
+          <div className="flex items-start gap-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine">
+              <IconMail />
+            </span>
+            <span>
+              <span className="block font-semibold text-brand-black">Correo</span>
+              <span className="text-brand-black/65">contacto@muna.co</span>
+            </span>
+          </div>
+          <div className="flex items-start gap-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine">
+              <IconChat />
+            </span>
+            <span>
+              <span className="block font-semibold text-brand-black">WhatsApp</span>
+              <span className="text-brand-black/65">Escríbenos por el botón del chat.</span>
+            </span>
+          </div>
+        </aside>
       </div>
-    </div>
+    </>
   );
 }

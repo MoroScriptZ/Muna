@@ -1,27 +1,22 @@
 import Link from "next/link";
+import { IconArrow } from "@/components/Icons";
 
 // Tarjeta de un grupo del catalogo (Piel, Ojos, Labios...). `group` viene de `groups` en data/products.js.
 export default function CategoryCard({ group }) {
   return (
     <Link
       href={`/tienda?grupo=${group.slug}`}
-      className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[20px] bg-brand-beige"
+      className="group flex items-center justify-between gap-4 rounded-lg border border-brand-line bg-white p-6 transition hover:border-brand-wine hover:shadow-md"
     >
-      <div className="absolute inset-0 flex items-center justify-center text-sm text-brand-wine-dark/50">
-        Foto próximamente
-      </div>
-
-      <div className="relative flex items-center justify-between gap-3 bg-white/90 p-4 backdrop-blur">
-        <span>
-          <span className="block font-display text-base text-brand-black">{group.name}</span>
-          <span className="block text-xs text-brand-black/55">
-            {group.count} {group.count === 1 ? "producto" : "productos"}
-          </span>
+      <span>
+        <span className="block font-display text-xl text-brand-black">{group.name}</span>
+        <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-brand-black/50">
+          {group.count} {group.count === 1 ? "producto" : "productos"}
         </span>
-        <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-wine text-white transition group-hover:bg-brand-wine-dark">
-          →
-        </span>
-      </div>
+      </span>
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine transition group-hover:bg-brand-wine group-hover:text-white">
+        <IconArrow width={18} height={18} />
+      </span>
     </Link>
   );
 }

@@ -32,7 +32,7 @@ export default function ProductoPage({ params }) {
   const grupoHref = `/tienda?grupo=${slugOf(product.group)}`;
 
   return (
-    <div className="container-page py-12">
+    <div className="container-page pb-24 pt-12">
       <nav aria-label="Ruta de navegación" className="text-sm text-brand-black/60">
         <Link href="/tienda" className="hover:text-brand-wine">Tienda</Link>
         <span aria-hidden="true"> / </span>
@@ -48,14 +48,15 @@ export default function ProductoPage({ params }) {
       </nav>
 
       <div className="mt-6 grid gap-10 md:grid-cols-2">
-        <div className="aspect-square overflow-hidden rounded-[20px] bg-brand-pink-muted">
+        <div className="aspect-square overflow-hidden rounded-lg border border-brand-line bg-brand-cream/60">
           <ProductImage product={product} />
         </div>
 
         <div>
-          <p className="text-xs text-brand-black/55">Ref. {product.reference}</p>
-          <h1 className="mt-1 font-display text-3xl text-brand-black">{product.title}</h1>
-          <p className="mt-4 font-display text-2xl text-brand-wine">{formatCOP(product.priceCOP)}</p>
+          <p className="eyebrow">{product.category || product.group}</p>
+          <h1 className="mt-3 font-display text-3xl leading-tight text-brand-black md:text-4xl">{product.title}</h1>
+          <p className="mt-2 text-xs uppercase tracking-[0.14em] text-brand-black/50">Ref. {product.reference}</p>
+          <p className="mt-5 border-b border-brand-line pb-6 text-3xl font-semibold text-brand-wine">{formatCOP(product.priceCOP)}</p>
 
           {variantes.length > 1 && (
             <div className="mt-6">
@@ -66,10 +67,10 @@ export default function ProductoPage({ params }) {
                     key={v.id}
                     href={`/tienda/${v.id}`}
                     aria-current={v.id === product.id ? "true" : undefined}
-                    className={`rounded-full border px-4 py-2 text-sm transition ${
+                    className={`rounded-md border px-4 py-2 text-[13px] font-medium transition ${
                       v.id === product.id
                         ? "border-brand-wine bg-brand-wine text-white"
-                        : "border-brand-black/15 text-brand-black hover:border-brand-wine"
+                        : "border-brand-line bg-white text-brand-black hover:border-brand-wine hover:text-brand-wine"
                     }`}
                   >
                     {v.variant}
@@ -102,7 +103,7 @@ export default function ProductoPage({ params }) {
 
       {descripcion.length > 0 && (
         <section className="mt-12 max-w-3xl">
-          <h2 className="font-display text-xl text-brand-black">Descripción</h2>
+          <h2 className="font-display text-2xl text-brand-black">Descripción</h2>
           <div className="mt-3 space-y-3 text-brand-black/75">
             {descripcion.map((bloque, i) =>
               bloque.tipo === "lista" ? (
@@ -118,7 +119,7 @@ export default function ProductoPage({ params }) {
       )}
 
       {(specs.items.length > 0 || specs.notas.length > 0) && (
-        <details className="mt-8 max-w-3xl rounded-2xl border border-brand-black/10 bg-white p-5">
+        <details className="mt-8 max-w-3xl rounded-lg border border-brand-line bg-white p-6">
           <summary className="cursor-pointer font-display text-lg text-brand-black">Especificaciones del producto</summary>
           <dl className="mt-4 space-y-3 text-sm">
             {specs.items.map((item, i) => (

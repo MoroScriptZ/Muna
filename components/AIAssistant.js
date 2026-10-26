@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { IconChat, IconClose, IconSend } from "@/components/Icons";
 
 const SUGGESTIONS = [
   "¿Qué correctores tienen y en qué tonos?",
@@ -13,7 +14,7 @@ export default function AIAssistant() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "¡Hola! Soy el asistente de MUNA 💄 Puedo ayudarte a elegir un producto o resolver dudas sobre envíos y pagos. ¿En qué te ayudo?"
+      content: "Hola, soy el asistente de MUNA. Puedo ayudarte a elegir un producto o resolver dudas sobre envíos y pagos. ¿En qué te ayudo?"
     }
   ]);
   const [input, setInput] = useState("");
@@ -66,14 +67,14 @@ export default function AIAssistant() {
     <>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-6 left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-wine text-xl text-white shadow-lg transition hover:bg-brand-wine-dark"
-        aria-label="Abrir asistente de MUNA"
+        className="fixed bottom-6 left-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-wine text-white shadow-lg transition hover:bg-brand-wine-dark"
+        aria-label={open ? "Cerrar asistente de MUNA" : "Abrir asistente de MUNA"}
       >
-        {open ? "✕" : "✨"}
+        {open ? <IconClose width={22} height={22} /> : <IconChat width={24} height={24} />}
       </button>
 
       {open && (
-        <div className="fixed bottom-24 left-6 z-50 flex h-[28rem] w-[22rem] max-w-[90vw] flex-col overflow-hidden rounded-[20px] border border-brand-black/10 bg-white shadow-2xl">
+        <div className="fixed bottom-24 left-5 z-50 flex h-[28rem] w-[22rem] max-w-[calc(100vw-2.5rem)] flex-col overflow-hidden rounded-lg border border-brand-line bg-white shadow-2xl">
           <div className="bg-brand-wine px-4 py-3 text-white">
             <p className="font-display text-sm">Asistente MUNA</p>
             <p className="text-xs text-white/70">Te ayudo a elegir tu producto</p>
@@ -123,9 +124,10 @@ export default function AIAssistant() {
             <button
               type="submit"
               disabled={loading}
-              className="rounded-full bg-brand-wine px-4 py-2 text-sm font-semibold text-white disabled:opacity-40"
+              className="flex items-center justify-center rounded-full bg-brand-wine px-4 py-2 text-white disabled:opacity-40"
+              aria-label="Enviar"
             >
-              ➤
+              <IconSend width={18} height={18} />
             </button>
           </form>
         </div>

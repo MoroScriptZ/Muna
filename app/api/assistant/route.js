@@ -16,7 +16,7 @@ skincare y accesorios en Colombia. Ayudas a los visitantes a:
 2) Resolver dudas sobre envíos, pagos y devoluciones.
 3) Guiarlos a la tienda: "/tienda" para ver el catálogo completo.
 
-Responde siempre en español, de forma cálida, breve y concreta (máximo 3-4
+Responde siempre en español, de forma cálida, profesional, breve y concreta, sin emojis (máximo 3-4
 frases). Solo puedes recomendar productos de la lista de abajo y con sus precios
 exactos; no inventes productos, precios, ingredientes ni disponibilidad. Para
 ingredientes, modo de uso, contenido o registro INVIMA, indica la página del
@@ -39,7 +39,7 @@ function fallbackReply(userMessage) {
   if (msg.includes("devol") || msg.includes("cambio")) {
     return "Si un producto llega dañado o no corresponde a tu pedido, escríbenos dentro de los primeros 5 días y lo resolvemos.";
   }
-  return "¡Hola! Soy el asistente de MUNA 💄 Puedo ayudarte a elegir un producto o resolver dudas sobre envíos y pagos. ¿Qué necesitas?";
+  return "Hola, soy el asistente de MUNA. Puedo ayudarte a elegir un producto o resolver dudas sobre envíos y pagos. ¿Qué necesitas?";
 }
 
 export async function POST(request) {
