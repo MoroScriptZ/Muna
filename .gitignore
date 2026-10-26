@@ -4,3 +4,6 @@ node_modules
 whatsapp-bot/auth_info
 whatsapp-bot/node_modules
 *.log
+
+# Local Netlify folder
+.netlify
