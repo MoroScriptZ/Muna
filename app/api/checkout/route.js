@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getProduct } from "@/data/products";
+import { supabase } from "@/lib/supabaseClient";
 
 // Endpoint de checkout — actualmente en modo simulado (mock).
 //
@@ -35,11 +36,22 @@ export async function POST(request) {
     items.push({ id: product.id, title: product.title, qty, priceCOP: product.priceCOP });
   }
 
+  const orderId = crypto.randomUUID();
+
+  // Guarda el pedido (estado "pendiente") si Supabase esta configurado.
+  if (supabase) {
+    const { error } = await supabase.from("orders").insert({ id: orderId, items, total_cop: total });
+    if (error) {
+      console.error("No se pudo guardar el pedido:", error.message);
+      return NextResponse.json({ error: "No pudimos registrar tu pedido. Intenta de nuevo." }, { status: 502 });
+    }
+  }
+
   // Simulación: en producción aquí se crea la referencia de pago con Wompi
   // y se retorna la URL real de la pasarela para redirigir al cliente.
   return NextResponse.json({
     message: "Checkout de prueba (modo mock). Conecta Wompi en app/api/checkout/route.js.",
-    orderId: `orden_${Date.now()}`,
+    orderId,
     total,
     items
   });
