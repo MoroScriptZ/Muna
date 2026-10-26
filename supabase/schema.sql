@@ -16,3 +16,6 @@ drop policy if exists "crear pedidos" on public.orders;
 create policy "crear pedidos" on public.orders
   for insert to anon
   with check (status = 'pendiente');
+
+-- Sin este permiso, RLS no basta: la clave anon recibe "permission denied".
+grant insert on public.orders to anon;
