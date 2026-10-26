@@ -1,0 +1,13 @@
+{
+  "name": "MUNA — Belleza que te representa",
+  "short_name": "MUNA",
+  "description": "Tienda de maquillaje, skincare y accesorios en línea",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F1E4D8",
+  "theme_color": "#732F3B",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

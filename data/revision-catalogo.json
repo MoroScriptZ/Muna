@@ -1,0 +1,103 @@
+[
+  {
+    "id": "dtr1753",
+    "title": "Doypack Tonico De Rosas 235ml",
+    "reference": "DTR1753",
+    "notas": [
+      "El título dice 235ml pero las especificaciones dicen \"Contenido: 360ml\"."
+    ]
+  },
+  {
+    "id": "kbl2274",
+    "title": "Kit Brochas Basico Lila",
+    "reference": "KBL2274",
+    "notas": [
+      "Especificaciones pendientes: no aparecen en el Excel."
+    ]
+  },
+  {
+    "id": "bmt2271",
+    "title": "Borrador De Maquillaje",
+    "reference": "BMT2271",
+    "notas": [
+      "La advertencia final está cortada en el Excel (\"…fuera del alcan\")."
+    ]
+  },
+  {
+    "id": "cmt547-tono-3",
+    "title": "Corrector Magic Mini TONO 3",
+    "reference": "CMT547",
+    "notas": [
+      "Descripción heredada del producto base con la misma referencia; confirmar que aplica a esta variante.",
+      "Especificaciones heredadas del producto base con la misma referencia; confirmar que aplican a esta variante."
+    ]
+  },
+  {
+    "id": "cmt547-tono-6",
+    "title": "Corrector Magic Mini TONO 6",
+    "reference": "CMT547",
+    "notas": [
+      "Descripción heredada del producto base con la misma referencia; confirmar que aplica a esta variante.",
+      "Especificaciones heredadas del producto base con la misma referencia; confirmar que aplican a esta variante."
+    ]
+  },
+  {
+    "id": "cmt547-tono-8",
+    "title": "Corrector Magic Mini TONO 8",
+    "reference": "CMT547",
+    "notas": [
+      "Descripción heredada del producto base con la misma referencia; confirmar que aplica a esta variante.",
+      "Especificaciones heredadas del producto base con la misma referencia; confirmar que aplican a esta variante."
+    ]
+  },
+  {
+    "id": "dy2188-banana",
+    "title": "Polvos Sueltos Y Compactos Jack BANANA",
+    "reference": "DY2188",
+    "notas": [
+      "La descripción habla de polvo rosado, pero esta variante es BANANA."
+    ]
+  },
+  {
+    "id": "dy2188-rosados",
+    "title": "Polvos Sueltos Y Compactos Jack ROSADOS",
+    "reference": "DY2188",
+    "notas": [
+      "Descripción heredada del producto base con la misma referencia; confirmar que aplica a esta variante.",
+      "Especificaciones heredadas del producto base con la misma referencia; confirmar que aplican a esta variante."
+    ]
+  },
+  {
+    "id": "pm04",
+    "title": "Primer Rosas Trendy Grande",
+    "reference": "PM04",
+    "notas": [
+      "Errata en Beneficios: \"ambién\" debería decir \"También\"."
+    ]
+  },
+  {
+    "id": "pmb2486",
+    "title": "Papeletas Matificantes Bob Esponja",
+    "reference": "Pmb2486",
+    "notas": [
+      "Las especificaciones incluyen \"Unidad mínima mayoristas: 2\" (dato de venta al por mayor): confirmar si debe verse en la tienda."
+    ]
+  },
+  {
+    "id": "mt1665",
+    "title": "Torre Multi Iluminador Cat",
+    "reference": "MT1665",
+    "notas": [
+      "Descripción pendiente: no aparece en el Excel.",
+      "Especificaciones pendientes: no aparecen en el Excel."
+    ]
+  },
+  {
+    "id": "bam2430-tono-04",
+    "title": "Brillo Aura Mocca TONO 04",
+    "reference": "BAM2430",
+    "notas": [
+      "Los ingredientes están cortados en el Excel (\"…PARFU\")."
+    ]
+  }
+]

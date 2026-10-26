@@ -1,0 +1,6 @@
+node_modules
+.next
+.env.local
+whatsapp-bot/auth_info
+whatsapp-bot/node_modules
+*.log
