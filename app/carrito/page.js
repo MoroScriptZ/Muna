@@ -8,7 +8,6 @@ export default function CarritoPage() {
   const { items, removeItem, updateQty, total, clearCart } = useCart();
 
   async function handleCheckout() {
-    // TODO: reemplazar por la integración real de Wompi (widget o link de pago).
     // Solo se envian ids y cantidades: el servidor calcula el total con los precios del catalogo.
     const res = await fetch("/api/checkout", {
       method: "POST",
@@ -16,6 +15,10 @@ export default function CarritoPage() {
       body: JSON.stringify({ items: items.map(({ id, qty }) => ({ id, qty })) })
     });
     const data = await res.json();
+    if (data.checkoutUrl) {
+      window.location.href = data.checkoutUrl;
+      return;
+    }
     alert(data.error || data.message || "Checkout de prueba: aquí se abriría la pasarela de pago.");
   }
 

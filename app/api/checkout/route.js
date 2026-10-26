@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getProduct } from "@/data/products";
+import { createHash } from "node:crypto";
 import { supabase } from "@/lib/supabaseClient";
 
 // Endpoint de checkout — actualmente en modo simulado (mock).
@@ -47,12 +48,26 @@ export async function POST(request) {
     }
   }
 
-  // Simulación: en producción aquí se crea la referencia de pago con Wompi
-  // y se retorna la URL real de la pasarela para redirigir al cliente.
-  return NextResponse.json({
-    message: "Checkout de prueba (modo mock). Conecta Wompi en app/api/checkout/route.js.",
-    orderId,
-    total,
-    items
+  // Sin llave de Wompi el checkout queda en modo mock (sin cobro).
+  const llave = process.env.NEXT_PUBLIC_WOMPI_PUBLIC_KEY;
+  if (!llave) {
+    return NextResponse.json({ message: "Checkout de prueba (modo mock): Wompi no está configurado.", orderId, total, items });
+  }
+
+  // Link de pago de Wompi: el monto va en centavos y la referencia es el id del pedido.
+  const centavos = total * 100;
+  const params = new URLSearchParams({
+    "public-key": llave,
+    currency: "COP",
+    "amount-in-cents": String(centavos),
+    reference: orderId,
+    "redirect-url": `${process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin}/gracias`
   });
+  // Firma de integridad (obligatoria si la activaste en el panel de Wompi).
+  const secreto = process.env.WOMPI_INTEGRITY_SECRET;
+  if (secreto) {
+    params.set("signature:integrity", createHash("sha256").update(`${orderId}${centavos}COP${secreto}`).digest("hex"));
+  }
+
+  return NextResponse.json({ orderId, total, items, checkoutUrl: `https://checkout.wompi.co/p/?${params}` });
 }
