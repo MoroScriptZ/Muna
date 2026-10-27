@@ -5,7 +5,7 @@ import { useState } from "react";
 const faqs = [
   {
     q: "¿Hacen envíos a todo el país?",
-    a: "Sí, enviamos a todo Colombia. El tiempo de entrega depende de tu ciudad y lo verás antes de pagar."
+    a: "Sí, enviamos a todo Colombia. El envío ya está incluido en el precio de los productos. El tiempo de entrega depende de tu ciudad y te lo confirmamos al despachar tu pedido."
   },
   {
     q: "¿Qué métodos de pago aceptan?",

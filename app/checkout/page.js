@@ -122,7 +122,7 @@ export default function CheckoutPage() {
             <label className="flex items-start gap-3 text-sm text-brand-black/75">
               <input type="checkbox" checked={datos.acepta} onChange={cambiar("acepta")} className="mt-1 h-4 w-4 accent-brand-wine" />
               <span>
-                Autorizo a MUNA para tratar mis datos personales con el fin de gestionar y entregar mi pedido, según la Ley 1581 de 2012.
+                Autorizo a MUNA para tratar mis datos personales con el fin de gestionar y entregar mi pedido, según la Ley 1581 de 2012 y la <a href="/privacidad" target="_blank" className="text-brand-wine underline">política de tratamiento de datos</a>.
               </span>
             </label>
             {errores.acepta && <p role="alert" className="mt-1 text-xs text-red-700">{errores.acepta}</p>}
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
             <span className="text-sm uppercase tracking-[0.14em] text-brand-black/60">Total productos</span>
             <span className="font-display text-2xl text-brand-wine">{formatCOP(total)}</span>
           </div>
-          <p className="mt-2 text-xs text-brand-black/55">El valor del envío se confirma contigo antes del despacho.</p>
+          <p className="mt-2 text-xs text-brand-black/55">El envío a domicilio ya está incluido en el precio de los productos.</p>
 
           {fallo && <p role="alert" className="mt-4 rounded-md bg-red-50 p-3 text-sm text-red-800">{fallo}</p>}
 

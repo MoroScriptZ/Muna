@@ -37,13 +37,14 @@ export default function Footer() {
                 <IconInstagram width={18} height={18} /> Instagram
               </a>
             </li>
+            <li><Link href="/privacidad" className={enlace}>Política de datos</Link></li>
             <li>Pagos seguros con Wompi</li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-white/10 py-6 text-center text-xs tracking-wide text-white/50">
-        © {new Date().getFullYear()} MUNA. Todos los derechos reservados.
+        © {new Date().getFullYear()} MUNA. Todos los derechos reservados. · <Link href="/admin" className="hover:text-white">Administración</Link>
       </div>
     </footer>
   );
