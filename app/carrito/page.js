@@ -7,21 +7,6 @@ import { formatCOP } from "@/lib/format";
 export default function CarritoPage() {
   const { items, removeItem, updateQty, total, clearCart } = useCart();
 
-  async function handleCheckout() {
-    // Solo se envian ids y cantidades: el servidor calcula el total con los precios del catalogo.
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: items.map(({ id, qty }) => ({ id, qty })) })
-    });
-    const data = await res.json();
-    if (data.checkoutUrl) {
-      window.location.href = data.checkoutUrl;
-      return;
-    }
-    alert(data.error || data.message || "Checkout de prueba: aquí se abriría la pasarela de pago.");
-  }
-
   if (items.length === 0) {
     return (
       <div className="container-page py-24 text-center">
@@ -77,9 +62,9 @@ export default function CarritoPage() {
             <span className="text-sm uppercase tracking-[0.14em] text-brand-black/60">Total</span>
             <span className="font-display text-2xl text-brand-wine">{formatCOP(total)}</span>
           </div>
-          <button onClick={handleCheckout} className="btn-primary mt-6 w-full">Pagar ahora</button>
+          <Link href="/checkout" className="btn-primary mt-6 w-full">Continuar con la compra</Link>
           <button onClick={clearCart} className="btn-outline mt-3 w-full">Vaciar bolsita</button>
-          <p className="mt-4 text-center text-xs text-brand-black/50">Pago seguro con Wompi</p>
+          <p className="mt-4 text-center text-xs text-brand-black/50">Pago seguro con Wompi · Envío a domicilio</p>
         </aside>
       </div>
     </>

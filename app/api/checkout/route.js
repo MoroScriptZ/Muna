@@ -1,29 +1,24 @@
+import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getProduct } from "@/data/products";
-import { createHash } from "node:crypto";
-import { supabase } from "@/lib/supabaseClient";
+import { validarCliente } from "@/lib/pedido";
+import { supabaseServer } from "@/lib/supabaseServer";
 
-// Endpoint de checkout — actualmente en modo simulado (mock).
+// Checkout a domicilio.
 //
-// El total se calcula AQUI con los precios del catalogo; el navegador solo manda ids y cantidades,
-// porque cualquier precio o total que venga del cliente se puede manipular.
-//
-// Cuando conectes Wompi de verdad:
-// 1) Crea las llaves en https://comercios.wompi.co
-// 2) Completa NEXT_PUBLIC_WOMPI_PUBLIC_KEY y WOMPI_PRIVATE_KEY en .env.local
-// 3) Reemplaza este handler para generar una transacción real
-//    (widget de Wompi en el frontend, o "Payment Link" desde el backend)
-// 4) Configura un webhook de Wompi que confirme el pago y actualice la orden.
+// El navegador manda ids, cantidades y datos del cliente. El total se calcula AQUI con los precios del
+// catalogo (cualquier precio o total que venga del cliente se puede manipular), el pedido se guarda como
+// "pendiente" y se devuelve el link de pago de Wompi. El webhook (/api/wompi/webhook) lo marca "pagado".
 
 const MAX_POR_PRODUCTO = 99;
+
+const error = (mensaje, status = 400, extra = {}) => NextResponse.json({ error: mensaje, ...extra }, { status });
 
 export async function POST(request) {
   const body = await request.json().catch(() => null);
   const lineas = Array.isArray(body?.items) ? body.items : [];
 
-  if (lineas.length === 0) {
-    return NextResponse.json({ error: "Tu bolsita está vacía" }, { status: 400 });
-  }
+  if (lineas.length === 0) return error("Tu bolsita está vacía");
 
   let total = 0;
   const items = [];
@@ -31,27 +26,35 @@ export async function POST(request) {
     const product = getProduct(linea?.id);
     const qty = linea?.qty;
     if (!product || !Number.isInteger(qty) || qty < 1 || qty > MAX_POR_PRODUCTO) {
-      return NextResponse.json({ error: "Hay un producto o una cantidad no válidos en tu bolsita" }, { status: 400 });
+      return error("Hay un producto o una cantidad no válidos en tu bolsita");
     }
     total += product.priceCOP * qty;
-    items.push({ id: product.id, title: product.title, qty, priceCOP: product.priceCOP });
+    items.push({ id: product.id, title: product.title, reference: product.reference, qty, priceCOP: product.priceCOP });
   }
+
+  const { limpio: cliente, errores } = validarCliente(body?.cliente);
+  if (Object.keys(errores).length > 0) return error("Revisa los datos de entrega", 400, { errores });
 
   const orderId = crypto.randomUUID();
 
-  // Guarda el pedido (estado "pendiente") si Supabase esta configurado.
-  if (supabase) {
-    const { error } = await supabase.from("orders").insert({ id: orderId, items, total_cop: total });
-    if (error) {
-      console.error("No se pudo guardar el pedido:", error.message);
-      return NextResponse.json({ error: "No pudimos registrar tu pedido. Intenta de nuevo." }, { status: 502 });
-    }
+  // Sin Supabase configurado no se puede guardar el pedido: se responde en modo prueba, sin cobro.
+  if (!supabaseServer) {
+    return NextResponse.json({ message: "Modo prueba: la base de datos no está configurada.", orderId, total, items });
   }
 
-  // Sin llave de Wompi el checkout queda en modo mock (sin cobro).
+  const { data: pedido, error: errorDb } = await supabaseServer
+    .from("orders")
+    .insert({ id: orderId, items, total_cop: total, ...cliente })
+    .select("numero")
+    .single();
+  if (errorDb) {
+    console.error("No se pudo guardar el pedido:", errorDb.message);
+    return error("No pudimos registrar tu pedido. Intenta de nuevo.", 502);
+  }
+
   const llave = process.env.NEXT_PUBLIC_WOMPI_PUBLIC_KEY;
   if (!llave) {
-    return NextResponse.json({ message: "Checkout de prueba (modo mock): Wompi no está configurado.", orderId, total, items });
+    return NextResponse.json({ message: "Modo prueba: Wompi no está configurado.", orderId, numero: pedido.numero, total, items });
   }
 
   // Link de pago de Wompi: el monto va en centavos y la referencia es el id del pedido.
@@ -61,7 +64,11 @@ export async function POST(request) {
     currency: "COP",
     "amount-in-cents": String(centavos),
     reference: orderId,
-    "redirect-url": `${process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin}/gracias`
+    "redirect-url": `${process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin}/gracias`,
+    "customer-data:email": cliente.email,
+    "customer-data:full-name": cliente.nombre,
+    "customer-data:phone-number": cliente.telefono,
+    "customer-data:phone-number-prefix": "+57"
   });
   // Firma de integridad (obligatoria si la activaste en el panel de Wompi).
   const secreto = process.env.WOMPI_INTEGRITY_SECRET;
@@ -69,5 +76,5 @@ export async function POST(request) {
     params.set("signature:integrity", createHash("sha256").update(`${orderId}${centavos}COP${secreto}`).digest("hex"));
   }
 
-  return NextResponse.json({ orderId, total, items, checkoutUrl: `https://checkout.wompi.co/p/?${params}` });
+  return NextResponse.json({ orderId, numero: pedido.numero, total, items, checkoutUrl: `https://checkout.wompi.co/p/?${params}` });
 }

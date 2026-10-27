@@ -5,8 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/components/CartContext";
 import { useWishlist } from "@/components/WishlistContext";
-import { IconBag, IconClose, IconHeart, IconInstagram, IconMenu } from "@/components/Icons";
-import { INSTAGRAM_URL } from "@/lib/contacto";
+import { IconBag, IconClose, IconHeart, IconMenu } from "@/components/Icons";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -55,16 +54,6 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram de MUNA"
-              className="hidden h-10 w-10 items-center justify-center rounded-full text-brand-black/70 transition hover:bg-brand-cream hover:text-brand-wine sm:flex"
-            >
-              <IconInstagram width={22} height={22} />
-            </a>
-
             <Link
               href="/favoritos"
               aria-label={`Mis favoritos, ${favoritos.length} guardados`}

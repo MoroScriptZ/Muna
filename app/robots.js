@@ -3,7 +3,8 @@ export default function robots() {
   return {
     rules: {
       userAgent: "*",
-      allow: "/"
+      allow: "/",
+      disallow: ["/admin", "/checkout", "/gracias"]
     },
     sitemap: `${base}/sitemap.xml`
   };

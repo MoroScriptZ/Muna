@@ -41,6 +41,7 @@ export async function POST(request) {
     .from("orders")
     .update({ status: estado })
     .eq("id", tx.reference)
+    .in("status", ["pendiente", "rechazado", "error"]) // no pisa pedidos ya enviados o entregados
     .eq("total_cop", tx.amount_in_cents / 100);
   if (error) {
     console.error("Webhook Wompi: no se pudo actualizar el pedido:", error.message);
