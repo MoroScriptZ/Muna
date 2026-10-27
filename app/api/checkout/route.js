@@ -22,7 +22,7 @@ export async function POST(request) {
   const lineas = Array.isArray(body?.items) ? body.items : [];
 
   if (lineas.length === 0) {
-    return NextResponse.json({ error: "El carrito está vacío" }, { status: 400 });
+    return NextResponse.json({ error: "Tu bolsita está vacía" }, { status: 400 });
   }
 
   let total = 0;
@@ -31,7 +31,7 @@ export async function POST(request) {
     const product = getProduct(linea?.id);
     const qty = linea?.qty;
     if (!product || !Number.isInteger(qty) || qty < 1 || qty > MAX_POR_PRODUCTO) {
-      return NextResponse.json({ error: "Hay un producto o una cantidad no válidos en el carrito" }, { status: 400 });
+      return NextResponse.json({ error: "Hay un producto o una cantidad no válidos en tu bolsita" }, { status: 400 });
     }
     total += product.priceCOP * qty;
     items.push({ id: product.id, title: product.title, qty, priceCOP: product.priceCOP });

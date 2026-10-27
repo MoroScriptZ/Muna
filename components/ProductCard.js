@@ -17,7 +17,7 @@ export default function ProductCard({ product }) {
 
   function handleAgregar() {
     addItem(product.id);
-    showToast(`${product.title} agregado al carrito`);
+    showToast(`${product.title} agregado a tu bolsita`);
   }
 
   function handleFavorito(e) {
@@ -55,8 +55,8 @@ export default function ProductCard({ product }) {
           <p className="text-base font-semibold text-brand-wine">{formatCOP(product.priceCOP)}</p>
           <button
             onClick={handleAgregar}
-            aria-label={`Agregar ${product.title} al carrito`}
-            className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-wine text-white transition hover:bg-brand-wine-dark"
+            aria-label={`Agregar ${product.title} a tu bolsita`}
+            className="depth flex h-10 w-10 items-center justify-center rounded-md bg-brand-wine text-white hover:bg-brand-wine-dark"
           >
             <IconBag width={18} height={18} />
           </button>

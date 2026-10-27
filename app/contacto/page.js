@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { IconChat, IconMail } from "@/components/Icons";
+import { IconChat, IconInstagram, IconMail } from "@/components/Icons";
+import { CORREO, INSTAGRAM_URL } from "@/lib/contacto";
 
 export default function ContactoPage() {
   const [sent, setSent] = useState(false);
@@ -47,7 +48,7 @@ export default function ContactoPage() {
             </span>
             <span>
               <span className="block font-semibold text-brand-black">Correo</span>
-              <span className="text-brand-black/65">contacto@muna.co</span>
+              <span className="text-brand-black/65">{CORREO}</span>
             </span>
           </div>
           <div className="flex items-start gap-4">
@@ -57,6 +58,17 @@ export default function ContactoPage() {
             <span>
               <span className="block font-semibold text-brand-black">WhatsApp</span>
               <span className="text-brand-black/65">Escríbenos por el botón del chat.</span>
+            </span>
+          </div>
+          <div className="flex items-start gap-4">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine">
+              <IconInstagram />
+            </span>
+            <span>
+              <span className="block font-semibold text-brand-black">Instagram</span>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-brand-wine hover:underline">
+                Síguenos en Instagram
+              </a>
             </span>
           </div>
         </aside>

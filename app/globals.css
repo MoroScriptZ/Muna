@@ -37,12 +37,33 @@ textarea:focus-visible {
   @apply mx-auto w-full max-w-6xl px-5 md:px-8;
 }
 
+/* Botones con profundidad: sombra inferior solida + sombra suave; se "hunden" al presionar */
+@layer components {
+  .depth {
+    box-shadow: 0 3px 0 #3f1620, 0 10px 18px -8px rgba(115, 47, 59, 0.55);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+  }
+  .depth:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 #3f1620, 0 14px 22px -8px rgba(115, 47, 59, 0.6);
+  }
+  .depth:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #3f1620, 0 2px 6px -2px rgba(115, 47, 59, 0.5);
+  }
+}
+
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-wine px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-brand-wine-dark;
+  @apply depth inline-flex items-center justify-center gap-2 rounded-md bg-brand-wine px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-white hover:bg-brand-wine-dark;
 }
 
 .btn-outline {
-  @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand-wine px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-brand-wine transition hover:bg-brand-wine hover:text-white;
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-brand-wine bg-white px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.12em] text-brand-wine transition hover:bg-brand-wine hover:text-white;
+  box-shadow: 0 3px 0 #d9c2c6;
+}
+.btn-outline:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 #d9c2c6;
 }
 
 /* Etiqueta pequena sobre los titulos de seccion */

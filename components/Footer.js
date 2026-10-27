@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { IconInstagram } from "@/components/Icons";
+import { INSTAGRAM_URL } from "@/lib/contacto";
 
 const col = "mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white";
 const enlace = "transition hover:text-white";
@@ -20,7 +22,8 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
             <li><Link href="/tienda" className={enlace}>Tienda</Link></li>
             <li><Link href="/sobre-nosotros" className={enlace}>Nosotros</Link></li>
-            <li><Link href="/carrito" className={enlace}>Carrito</Link></li>
+            <li><Link href="/carrito" className={enlace}>Mi bolsita</Link></li>
+            <li><Link href="/favoritos" className={enlace}>Mis favoritos</Link></li>
           </ul>
         </div>
 
@@ -29,6 +32,11 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
             <li><Link href="/contacto" className={enlace}>Contacto</Link></li>
             <li>Atención por WhatsApp</li>
+            <li>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className={`${enlace} inline-flex items-center gap-2`}>
+                <IconInstagram width={18} height={18} /> Instagram
+              </a>
+            </li>
             <li>Pagos seguros con Wompi</li>
           </ul>
         </div>

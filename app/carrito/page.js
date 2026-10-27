@@ -25,8 +25,8 @@ export default function CarritoPage() {
   if (items.length === 0) {
     return (
       <div className="container-page py-24 text-center">
-        <p className="eyebrow">Carrito</p>
-        <h1 className="section-title">Tu carrito está vacío</h1>
+        <p className="eyebrow">Bolsita</p>
+        <h1 className="section-title">Tu bolsita está vacía</h1>
         <p className="mt-3 text-brand-black/60">Explora la tienda y agrega los productos que te gusten.</p>
         <Link href="/tienda" className="btn-primary mt-8">Ir a la tienda</Link>
       </div>
@@ -38,7 +38,7 @@ export default function CarritoPage() {
       <section className="border-b border-brand-line bg-brand-cream">
         <div className="container-page py-12">
           <p className="eyebrow">Compra</p>
-          <h1 className="section-title">Tu carrito</h1>
+          <h1 className="section-title">Tu bolsita</h1>
         </div>
       </section>
 
@@ -78,7 +78,7 @@ export default function CarritoPage() {
             <span className="font-display text-2xl text-brand-wine">{formatCOP(total)}</span>
           </div>
           <button onClick={handleCheckout} className="btn-primary mt-6 w-full">Pagar ahora</button>
-          <button onClick={clearCart} className="btn-outline mt-3 w-full">Vaciar carrito</button>
+          <button onClick={clearCart} className="btn-outline mt-3 w-full">Vaciar bolsita</button>
           <p className="mt-4 text-center text-xs text-brand-black/50">Pago seguro con Wompi</p>
         </aside>
       </div>

@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import FloatingCart from "@/components/FloatingCart";
 import AIAssistant from "@/components/AIAssistant";
 import { CartProvider } from "@/components/CartContext";
 import { ToastProvider } from "@/components/ToastContext";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
               <main>{children}</main>
               <Footer />
               <WhatsAppButton />
+              <FloatingCart />
               <AIAssistant />
             </CartProvider>
           </WishlistProvider>

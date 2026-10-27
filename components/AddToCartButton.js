@@ -13,10 +13,10 @@ export default function AddToCartButton({ id, title, className = "btn-primary" }
       className={className}
       onClick={() => {
         addItem(id);
-        showToast(`${title} agregado al carrito`);
+        showToast(`${title} agregado a tu bolsita`);
       }}
     >
-      Agregar al carrito
+      Agregar a tu bolsita
     </button>
   );
 }

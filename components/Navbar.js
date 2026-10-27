@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/components/CartContext";
-import { IconBag, IconClose, IconMenu } from "@/components/Icons";
+import { useWishlist } from "@/components/WishlistContext";
+import { IconBag, IconClose, IconHeart, IconInstagram, IconMenu } from "@/components/Icons";
+import { INSTAGRAM_URL } from "@/lib/contacto";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -16,6 +18,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { count } = useCart();
+  const { items: favoritos } = useWishlist();
   const pathname = usePathname();
 
   return (
@@ -25,7 +28,7 @@ export default function Navbar() {
       </div>
 
       <div className="border-b border-brand-line">
-        <div className="container-page flex h-[72px] items-center justify-between gap-8">
+        <div className="container-page flex h-[72px] items-center justify-between gap-6">
           <Link href="/" aria-label="MUNA, ir al inicio" className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/logo.png" alt="MUNA" width={428} height={131} className="h-9 w-auto" />
@@ -51,18 +54,41 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <Link
-              href="/carrito"
-              className="relative flex h-10 w-10 items-center justify-center rounded-full text-brand-black/80 transition hover:bg-brand-cream hover:text-brand-wine"
-              aria-label={`Carrito, ${count} productos`}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de MUNA"
+              className="hidden h-10 w-10 items-center justify-center rounded-full text-brand-black/70 transition hover:bg-brand-cream hover:text-brand-wine sm:flex"
             >
-              <IconBag width={22} height={22} />
-              {count > 0 && (
-                <span className="absolute right-0 top-0 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-brand-wine px-1 text-[10px] font-semibold text-white">
-                  {count}
+              <IconInstagram width={22} height={22} />
+            </a>
+
+            <Link
+              href="/favoritos"
+              aria-label={`Mis favoritos, ${favoritos.length} guardados`}
+              className="relative flex h-10 items-center gap-2 rounded-full px-3 text-brand-black/75 transition hover:bg-brand-cream hover:text-brand-wine"
+            >
+              <IconHeart width={22} height={22} filled={favoritos.length > 0} className={favoritos.length > 0 ? "text-brand-wine" : ""} />
+              <span className="hidden text-[13px] font-medium uppercase tracking-[0.12em] lg:inline">Favoritos</span>
+              {favoritos.length > 0 && (
+                <span className="absolute right-0 top-0 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-brand-wine px-1 text-[10px] font-semibold text-white lg:static">
+                  {favoritos.length}
                 </span>
               )}
+            </Link>
+
+            <Link
+              href="/carrito"
+              aria-label={`Tu bolsita, ${count} productos`}
+              className="depth relative flex h-11 items-center gap-2 rounded-full bg-brand-wine px-4 text-white hover:bg-brand-wine-dark"
+            >
+              <IconBag width={20} height={20} />
+              <span className="hidden text-[13px] font-semibold uppercase tracking-[0.12em] sm:inline">Mi bolsita</span>
+              <span className="flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-white px-1.5 text-xs font-bold text-brand-wine">
+                {count}
+              </span>
             </Link>
 
             <button
@@ -80,7 +106,7 @@ export default function Navbar() {
       {open && (
         <nav className="border-b border-brand-line bg-brand-ivory md:hidden" aria-label="Principal móvil">
           <div className="container-page flex flex-col py-2">
-            {links.map((link) => (
+            {[...links, { href: "/favoritos", label: "Mis favoritos" }].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

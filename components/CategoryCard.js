@@ -6,15 +6,15 @@ export default function CategoryCard({ group }) {
   return (
     <Link
       href={`/tienda?grupo=${group.slug}`}
-      className="group flex items-center justify-between gap-4 rounded-lg border border-brand-line bg-white p-6 transition hover:border-brand-wine hover:shadow-md"
+      className="depth group flex items-center justify-between gap-4 rounded-lg bg-brand-wine p-6 text-white hover:bg-brand-wine-dark"
     >
       <span>
-        <span className="block font-display text-xl text-brand-black">{group.name}</span>
-        <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-brand-black/50">
+        <span className="block font-display text-xl">{group.name}</span>
+        <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-white/70">
           {group.count} {group.count === 1 ? "producto" : "productos"}
         </span>
       </span>
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine transition group-hover:bg-brand-wine group-hover:text-white">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white transition group-hover:bg-white group-hover:text-brand-wine">
         <IconArrow width={18} height={18} />
       </span>
     </Link>
