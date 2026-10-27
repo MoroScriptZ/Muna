@@ -4,7 +4,7 @@ import { IconArrow, IconShield, IconTruck, IconChat } from "@/components/Icons";
 const garantias = [
   { Icon: IconTruck, titulo: "Envíos a todo Colombia", texto: "Recibe tu pedido donde estés." },
   { Icon: IconShield, titulo: "Pago seguro", texto: "Procesado con la pasarela Wompi." },
-  { Icon: IconChat, titulo: "Atención personalizada", texto: "Te asesoramos por WhatsApp." }
+  { Icon: IconChat, titulo: "Atención personalizada", texto: "Te asesoramos en cada compra." }
 ];
 
 export default function Hero() {

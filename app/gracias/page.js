@@ -24,7 +24,7 @@ async function consultarPago(id) {
 }
 
 const MENSAJES = {
-  APPROVED: { titulo: "Gracias por tu compra", texto: "Tu pago fue aprobado. Te contactaremos por WhatsApp para coordinar la entrega de tu pedido." },
+  APPROVED: { titulo: "Gracias por tu compra", texto: "Tu pago fue aprobado. Te contactaremos para coordinar la entrega de tu pedido." },
   PENDING: { titulo: "Estamos confirmando tu pago", texto: "Tu banco aún no confirma la transacción. Apenas lo haga, tu pedido quedará registrado." },
   DECLINED: { titulo: "Tu pago no fue aprobado", texto: "No se realizó ningún cobro. Puedes intentarlo de nuevo con otro medio de pago." },
   VOIDED: { titulo: "Tu pago fue anulado", texto: "No se realizó ningún cobro." },
@@ -33,7 +33,7 @@ const MENSAJES = {
 
 export default async function GraciasPage({ searchParams }) {
   const pago = await consultarPago(searchParams.id);
-  const mensaje = MENSAJES[pago?.estado] ?? { titulo: "Recibimos tu solicitud", texto: "Si ya completaste el pago, te contactaremos por WhatsApp para coordinar la entrega." };
+  const mensaje = MENSAJES[pago?.estado] ?? { titulo: "Recibimos tu solicitud", texto: "Si ya completaste el pago, te contactaremos para coordinar la entrega." };
 
   return (
     <div className="container-page py-24 text-center">

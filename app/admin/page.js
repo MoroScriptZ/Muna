@@ -31,7 +31,7 @@ function Login({ onEntrar }) {
     e.preventDefault();
     setCargando(true);
     setError("");
-    const { error: err } = await supabase.auth.signInWithPassword({ email, password: clave });
+    const { error: err } = await supabase.auth.signInWithPassword({ email: email.includes("@") ? email.trim() : `${email.trim()}@muna.co`, password: clave });
     setCargando(false);
     if (err) setError("Correo o contraseña incorrectos.");
     else onEntrar();
@@ -41,7 +41,7 @@ function Login({ onEntrar }) {
     <div className="container-page py-24">
       <form onSubmit={entrar} className="mx-auto max-w-sm space-y-4 rounded-lg border border-brand-line bg-white p-8">
         <h1 className="font-display text-2xl text-brand-black">Administración</h1>
-        <input type="email" required placeholder="Correo" aria-label="Correo" value={email} onChange={(e) => setEmail(e.target.value)} className="field" />
+        <input type="text" required autoComplete="username" placeholder="Usuario o correo" aria-label="Usuario o correo" value={email} onChange={(e) => setEmail(e.target.value)} className="field" />
         <input type="password" required placeholder="Contraseña" aria-label="Contraseña" value={clave} onChange={(e) => setClave(e.target.value)} className="field" />
         {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
         <button type="submit" disabled={cargando} className="btn-primary w-full disabled:opacity-60">{cargando ? "Entrando..." : "Entrar"}</button>
@@ -77,7 +77,7 @@ function Pedido({ pedido, onCambiar }) {
             {pedido.indicaciones && <p className="text-brand-black/65">{pedido.indicaciones}</p>}
             <p>{pedido.ciudad}, {pedido.departamento}</p>
             <p className="pt-2">
-              <a href={wa} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-wine hover:underline">WhatsApp {pedido.telefono}</a>
+              <a href={wa} target="_blank" rel="noopener noreferrer" className="font-medium text-brand-wine hover:underline">Llamar / WhatsApp {pedido.telefono}</a>
               <span className="text-brand-black/40"> · </span>
               <a href={`mailto:${pedido.email}`} className="text-brand-wine hover:underline">{pedido.email}</a>
             </p>

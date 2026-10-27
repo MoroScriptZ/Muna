@@ -85,7 +85,7 @@ export default function CheckoutPage() {
               <input id="nombre" autoComplete="name" value={datos.nombre} onChange={cambiar("nombre")} className={clase("nombre")} />
             </Campo>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Campo id="telefono" label="Celular (WhatsApp)" error={errores.telefono}>
+              <Campo id="telefono" label="Celular" error={errores.telefono}>
                 <input id="telefono" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="3001234567" value={datos.telefono} onChange={cambiar("telefono")} className={clase("telefono")} />
               </Campo>
               <Campo id="email" label="Correo electrónico" error={errores.email}>
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
             <span className="text-sm uppercase tracking-[0.14em] text-brand-black/60">Total productos</span>
             <span className="font-display text-2xl text-brand-wine">{formatCOP(total)}</span>
           </div>
-          <p className="mt-2 text-xs text-brand-black/55">El valor del envío se confirma contigo por WhatsApp.</p>
+          <p className="mt-2 text-xs text-brand-black/55">El valor del envío se confirma contigo antes del despacho.</p>
 
           {fallo && <p role="alert" className="mt-4 rounded-md bg-red-50 p-3 text-sm text-red-800">{fallo}</p>}
 

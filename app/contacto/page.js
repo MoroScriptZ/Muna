@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { IconChat, IconInstagram, IconMail } from "@/components/Icons";
-import { CORREO, INSTAGRAM_URL } from "@/lib/contacto";
+import { CORREO, INSTAGRAM_URL, WHATSAPP_NUMBER } from "@/lib/contacto";
 
 export default function ContactoPage() {
   const [sent, setSent] = useState(false);
@@ -51,7 +51,7 @@ export default function ContactoPage() {
               <span className="text-brand-black/65">{CORREO}</span>
             </span>
           </div>
-          <div className="flex items-start gap-4">
+          {WHATSAPP_NUMBER && <div className="flex items-start gap-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine">
               <IconChat />
             </span>
@@ -59,7 +59,7 @@ export default function ContactoPage() {
               <span className="block font-semibold text-brand-black">WhatsApp</span>
               <span className="text-brand-black/65">Escríbenos por el botón del chat.</span>
             </span>
-          </div>
+          </div>}
           <div className="flex items-start gap-4">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-cream text-brand-wine">
               <IconInstagram />

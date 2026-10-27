@@ -58,3 +58,6 @@ revoke all on public.orders from authenticated;
 grant select on public.orders to authenticated;
 grant update (status) on public.orders to authenticated;
 grant select on public.admins to authenticated;
+
+-- El backend (service_role) debe poder escribir pedidos y registrar admins.
+grant all on public.orders, public.admins to service_role;

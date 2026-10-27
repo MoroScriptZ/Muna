@@ -4,6 +4,7 @@ import { WHATSAPP_NUMBER } from "@/lib/contacto";
 // Boton flotante de WhatsApp para consultas de productos.
 // bottom-20: queda por encima del sello de Netlify (esquina inferior derecha) para que no se tapen.
 export default function WhatsAppButton() {
+  if (!WHATSAPP_NUMBER) return null;
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero saber más sobre sus productos.")}`;
 
   return (

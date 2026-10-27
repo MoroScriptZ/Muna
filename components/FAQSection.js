@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "¿Cómo sé si un producto es original?",
-    a: "Todos los productos se compran a distribuidores autorizados. Si tienes dudas sobre un lote o referencia, escríbenos por WhatsApp antes de comprar."
+    a: "Todos los productos se compran a distribuidores autorizados. Si tienes dudas sobre un lote o referencia, escríbenos antes de comprar."
   }
 ];
 

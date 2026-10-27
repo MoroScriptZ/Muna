@@ -8,8 +8,8 @@ if (!email || !password || !url || !key) {
   console.error("Uso: node --env-file=.env.local scripts/crear-admin.mjs <correo> <contrasena>");
   process.exit(1);
 }
-if (password.length < 10) {
-  console.error("La contraseña debe tener al menos 10 caracteres.");
+if (password.length < 8) {
+  console.error("La contraseña debe tener al menos 8 caracteres.");
   process.exit(1);
 }
 

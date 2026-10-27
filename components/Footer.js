@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { IconInstagram } from "@/components/Icons";
-import { INSTAGRAM_URL } from "@/lib/contacto";
+import { INSTAGRAM_URL, WHATSAPP_NUMBER } from "@/lib/contacto";
 
 const col = "mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white";
 const enlace = "transition hover:text-white";
@@ -31,7 +31,7 @@ export default function Footer() {
           <p className={col}>Ayuda</p>
           <ul className="space-y-3 text-sm">
             <li><Link href="/contacto" className={enlace}>Contacto</Link></li>
-            <li>Atención por WhatsApp</li>
+            {WHATSAPP_NUMBER && <li>Atención por WhatsApp</li>}
             <li>
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className={`${enlace} inline-flex items-center gap-2`}>
                 <IconInstagram width={18} height={18} /> Instagram
