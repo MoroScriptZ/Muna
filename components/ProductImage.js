@@ -3,14 +3,14 @@
 // su nombre de archivo en el campo `image` del producto.
 export const TEXTO_SIN_FOTO = "Imagen próximamente";
 
-export default function ProductImage({ product }) {
+export default function ProductImage({ product, priority = false }) {
   if (product.image) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={`/images/products/${product.image}`}
         alt={product.title}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
         className="h-full w-full object-cover"
       />
     );

@@ -34,8 +34,9 @@ export default function Hero() {
           <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-lg bg-brand-wine md:aspect-square">
             <div className="absolute inset-4 rounded border border-white/25" aria-hidden="true" />
             <div className="text-center text-white">
-              <p className="font-display text-5xl tracking-[0.25em] md:text-6xl">MUNA</p>
-              <p className="mt-4 text-xs uppercase tracking-[0.3em] text-white/70">Trendy by Muna</p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logo-blanco.png" alt="MUNA" width={428} height={131} className="mx-auto w-64 md:w-80" />
+              <p className="mt-6 text-xs uppercase tracking-[0.3em] text-white/70">Trendy by Muna</p>
             </div>
           </div>
         </div>

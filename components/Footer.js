@@ -8,7 +8,8 @@ export default function Footer() {
     <footer className="bg-brand-wine-dark text-white/70">
       <div className="container-page grid gap-12 py-16 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
-          <p className="font-display text-2xl tracking-[0.18em] text-white">MUNA</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/logo-blanco.png" alt="MUNA" width={428} height={131} className="h-10 w-auto" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
             Maquillaje, skincare y accesorios seleccionados para que elijas lo que realmente va contigo.
           </p>

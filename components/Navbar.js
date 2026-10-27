@@ -26,8 +26,9 @@ export default function Navbar() {
 
       <div className="border-b border-brand-line">
         <div className="container-page flex h-[72px] items-center justify-between gap-8">
-          <Link href="/" className="font-display text-[26px] tracking-[0.18em] text-brand-wine">
-            MUNA
+          <Link href="/" aria-label="MUNA, ir al inicio" className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/logo.png" alt="MUNA" width={428} height={131} className="h-9 w-auto" />
           </Link>
 
           <nav className="hidden items-center gap-10 md:flex" aria-label="Principal">

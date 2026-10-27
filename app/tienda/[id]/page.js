@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToCartButton from "@/components/AddToCartButton";
-import ProductImage from "@/components/ProductImage";
+import Galeria from "@/components/Galeria";
 import { getProduct, products, slugOf, variantsOf } from "@/data/products";
 import { formatCOP } from "@/lib/format";
 import { bloquesDeDescripcion, especificaciones, primeraFrase, valorDe } from "@/lib/texto";
@@ -48,9 +48,7 @@ export default function ProductoPage({ params }) {
       </nav>
 
       <div className="mt-6 grid gap-10 md:grid-cols-2">
-        <div className="aspect-square overflow-hidden rounded-lg border border-brand-line bg-brand-cream/60">
-          <ProductImage product={product} />
-        </div>
+        <Galeria key={product.id} title={product.title} images={product.images} />
 
         <div>
           <p className="eyebrow">{product.category || product.group}</p>

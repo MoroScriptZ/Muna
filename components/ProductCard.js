@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-lg border border-brand-line bg-white transition hover:shadow-md">
-      <Link href={`/tienda/${product.id}`} className="relative block aspect-square w-full bg-brand-cream/60">
+      <Link href={`/tienda/${product.id}`} className="relative block aspect-square w-full border-b border-brand-line bg-white">
         <button
           type="button"
           aria-label={guardado ? "Quitar de favoritos" : "Guardar en favoritos"}

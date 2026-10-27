@@ -1,18 +1,7 @@
-Coloca aquí las fotos reales de los productos.
+Fotos de los productos, importadas desde la carpeta de Drive con:
 
-El nombre del archivo debe coincidir EXACTAMENTE con el campo "image" de
-cada producto en /data/products.js. Por ejemplo:
+  python -I scripts/importar-imagenes.py "<ruta a la carpeta MUNA>"
 
-  base-velvet-matte.jpg
-  paleta-sunset.jpg
-  labial-matte-kiss.jpg
-  ...
-
-Mientras no subas la foto, la tienda muestra un marcador "📷 Foto próximamente"
-automáticamente (ver components/ProductCard.js), así que no rompe nada dejar
-esta carpeta vacía por ahora.
-
-Una vez tengas las fotos reales, en ProductCard.js y en tienda/[id]/page.js
-reemplaza el bloque del marcador de posición por:
-
-  <img src={`/images/products/${product.image}`} alt={product.name} className="h-full w-full object-cover" />
+El script copia las fotos como <id>-1.webp, <id>-2.webp... y escribe data/imagenes.json
+(la primera foto de cada producto es la portada). Para cambiar una foto, reemplaza el archivo
+conservando el nombre, o vuelve a correr el script.
