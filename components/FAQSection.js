@@ -5,7 +5,7 @@ import { useState } from "react";
 const faqs = [
   {
     q: "¿Hacen envíos a todo el país?",
-    a: "Sí, enviamos a todo Colombia. El envío ya está incluido en el precio de los productos. El tiempo de entrega depende de tu ciudad y te lo confirmamos al despachar tu pedido."
+    a: "Sí, enviamos a todo Colombia. Despachamos desde Mosquera. El envío cuesta $10.000 a Bogotá y $15.000 al resto del país, y se suma al total antes de pagar. El tiempo de entrega depende de tu ciudad y te lo confirmamos al despachar tu pedido."
   },
   {
     q: "¿Qué métodos de pago aceptan?",

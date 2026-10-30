@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useCart } from "@/components/CartContext";
-import { DEPARTAMENTOS, validarCliente } from "@/lib/pedido";
+import { DEPARTAMENTOS, validarCliente, calcularEnvio } from "@/lib/pedido";
 import { formatCOP } from "@/lib/format";
 
 const VACIO = {
@@ -23,6 +23,7 @@ function Campo({ id, label, error, children }) {
 export default function CheckoutPage() {
   const { items, total } = useCart();
   const [datos, setDatos] = useState(VACIO);
+  const envio = calcularEnvio(datos);
   const [errores, setErrores] = useState({});
   const [enviando, setEnviando] = useState(false);
   const [fallo, setFallo] = useState("");
@@ -139,11 +140,18 @@ export default function CheckoutPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-2 flex items-center justify-between border-t border-brand-line pt-5">
-            <span className="text-sm uppercase tracking-[0.14em] text-brand-black/60">Total productos</span>
-            <span className="font-display text-2xl text-brand-wine">{formatCOP(total)}</span>
-          </div>
-          <p className="mt-2 text-xs text-brand-black/55">El envío a domicilio ya está incluido en el precio de los productos.</p>
+          <dl className="mt-2 space-y-2 border-t border-brand-line pt-5 text-sm">
+            <div className="flex justify-between"><dt className="text-brand-black/65">Productos</dt><dd>{formatCOP(total)}</dd></div>
+            <div className="flex justify-between">
+              <dt className="text-brand-black/65">Envío a domicilio</dt>
+              <dd>{envio === null ? "Elige tu departamento" : formatCOP(envio)}</dd>
+            </div>
+            <div className="flex items-center justify-between border-t border-brand-line pt-4">
+              <dt className="uppercase tracking-[0.14em] text-brand-black/60">Total</dt>
+              <dd className="font-display text-2xl text-brand-wine">{formatCOP(total + (envio ?? 0))}</dd>
+            </div>
+          </dl>
+          <p className="mt-2 text-xs text-brand-black/55">Despachamos desde Mosquera: envío a Bogotá $10.000 y al resto del país $15.000.</p>
 
           {fallo && <p role="alert" className="mt-4 rounded-md bg-red-50 p-3 text-sm text-red-800">{fallo}</p>}
 

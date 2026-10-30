@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getProduct } from "@/data/products";
-import { validarCliente } from "@/lib/pedido";
+import { validarCliente, calcularEnvio } from "@/lib/pedido";
 import { supabaseServer } from "@/lib/supabaseServer";
 
 // Checkout a domicilio.
@@ -34,6 +34,11 @@ export async function POST(request) {
 
   const { limpio: cliente, errores } = validarCliente(body?.cliente);
   if (Object.keys(errores).length > 0) return error("Revisa los datos de entrega", 400, { errores });
+
+  // El envio se cobra como una linea mas del pedido, asi el total de Wompi y el panel admin lo incluyen.
+  const envio = calcularEnvio(cliente);
+  items.push({ id: "envio", title: "Envío a domicilio", qty: 1, priceCOP: envio });
+  total += envio;
 
   const orderId = crypto.randomUUID();
 
